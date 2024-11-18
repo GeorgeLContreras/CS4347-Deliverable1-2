@@ -59,6 +59,8 @@ body {
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  color: rgb(53, 52, 52); /* Changed text color inside input to white */
+  background-color: #e7e2e2; /* Dark background for contrast */
 }
 
 .primary-button {
@@ -136,4 +138,6 @@ input[type="number"] {
   padding: 8px;
   border-radius: 8px;
   border: 1px solid var(--border-color);
+  color: rgb(53, 52, 52); /* Changed text color inside input to white */
+  background-color: #e7e2e2;
 }
