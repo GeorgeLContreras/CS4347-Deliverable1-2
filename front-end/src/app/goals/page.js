@@ -40,6 +40,11 @@ export default function GoalsPage() {
     setGoalsLogs(updatedGoals);
   };
 
+  const handleDeleteGoal = (index) => {
+    const updatedGoals = goalsLogs.filter((_, i) => i !== index);
+    setGoalsLogs(updatedGoals);
+  };
+
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
   };
@@ -49,7 +54,7 @@ export default function GoalsPage() {
     : goalsLogs;
 
   const calculateProgressPercentage = (goal) => {
-    return ((goal.progress / goal.target) * 100).toFixed(0); // Round to nearest integer
+    return (goal.progress / goal.target) * 100;
   };
 
   return (
@@ -134,7 +139,6 @@ export default function GoalsPage() {
             <p><strong>Description:</strong> {goalsLookup.description}</p>
             <p><strong>Target:</strong> {goalsLookup.target} {goalsLookup.unit}</p>
             <p><strong>Progress:</strong> {goalsLookup.progress} {goalsLookup.unit}</p>
-            <p><strong>Progress Percentage:</strong> {calculateProgressPercentage(goalsLookup)}%</p>
             <p><strong>Date:</strong> {goalsLookup.date}</p>
           </div>
         ) : (
@@ -170,7 +174,7 @@ export default function GoalsPage() {
                 <p><strong>Description:</strong> {log.description}</p>
                 <p><strong>Target:</strong> {log.target} {log.unit}</p>
                 <p><strong>Progress:</strong> {log.progress} {log.unit}</p>
-                <p><strong>Progress Percentage:</strong> {calculateProgressPercentage(log)}%</p>
+                <p><strong>Progress Percentage:</strong> {calculateProgressPercentage(log).toFixed(2)}%</p>
                 <label>
                   Edit Progress:
                   <input
@@ -181,6 +185,12 @@ export default function GoalsPage() {
                   />
                 </label>
                 <p><strong>Date:</strong> {log.date}</p>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeleteGoal(index)}
+                >
+                  Delete Goal
+                </button>
               </li>
             ))}
           </ul>
